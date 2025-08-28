@@ -1,9 +1,12 @@
 package com.example.team3.service;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.team3.domain.User;
+import com.example.team3.domain.RoleType;
+
 import com.example.team3.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 	
 	private final UserRepository userRepository;
+	private final PasswordEncoder passwordEncoder;
 
 	public User getUser(String username) {
 		User user = userRepository.findByUsername(username)
@@ -21,4 +25,14 @@ public class UserService {
 		 return user;
 	}
 	
+	
+	public void insert(User user) {
+		
+		
+		user.setPassword(passwordEncoder.encode(user.getPassword())); 
+		user.setRole(RoleType.USER);
+		
+		userRepository.save(user);
+	}
+
 }

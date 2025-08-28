@@ -39,5 +39,5 @@ public class User {
 	
 	@CreationTimestamp
 	private Timestamp date;
-	
+
 }
