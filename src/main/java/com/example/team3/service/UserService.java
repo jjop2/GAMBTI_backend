@@ -1,5 +1,6 @@
 package com.example.team3.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -15,13 +16,14 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 
 	private final UserRepository userRepository;
+	private final PasswordEncoder passwordEncoder;
 	
-	// 엔코더 작성
+	
 	
 	public void insert(User user) {
 		
 		
-		user.setPassword("test123"); //시큐리티 encoder세팅되면 작성
+		user.setPassword(passwordEncoder.encode(user.getPassword())); 
 		user.setRole(RoleType.USER);
 		
 		userRepository.save(user);
