@@ -1,11 +1,15 @@
 package com.example.team3.domain;
 
-import java.security.Timestamp;
+
+
+import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,6 +37,9 @@ public class User {
 	private String email;
 	
 	@CreationTimestamp
-	private Timestamp Date;
+	private Timestamp date;
+	
+	@Enumerated(EnumType.STRING)
+	private RoleType role;
 	
 }
