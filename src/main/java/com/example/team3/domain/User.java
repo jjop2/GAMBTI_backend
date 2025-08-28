@@ -1,7 +1,5 @@
 package com.example.team3.domain;
 
-
-
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -36,10 +34,10 @@ public class User {
 	@Column(nullable= false , unique = true)
 	private String email;
 	
-	@CreationTimestamp
-	private Timestamp date;
-	
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
 	
+	@CreationTimestamp
+	private Timestamp date;
+
 }

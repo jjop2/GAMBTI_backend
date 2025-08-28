@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.example.team3.domain.User;
+import com.example.team3.domain.UserDTO;
 import com.example.team3.jwt.JwtService;
 import com.example.team3.service.UserService;
 
@@ -20,21 +20,15 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class Usercontroller {
+public class UserController {
 	
 	private final UserService userService;
-	private final AuthenticationManager authenticationManager;
 	private final JwtService jwtService;
-	
-	@PostMapping("/signup")
-	public ResponseEntity<?> signup(@RequestBody User user){
-		userService.insert(user);
-		
-		return new ResponseEntity<>("회원가입 완료", HttpStatus.OK);
-	}
+	private final AuthenticationManager authenticationManager;
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody User user) {
+		
 		UsernamePasswordAuthenticationToken cred = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
 		
 		Authentication auth = authenticationManager.authenticate(cred);
@@ -50,8 +44,9 @@ public class Usercontroller {
 	@GetMapping("/userinfo")
 	public ResponseEntity<?> userInfo(Authentication auth) {
 		User user = userService.getUser(auth.getName());
+		UserDTO dto = new UserDTO(user);
 		
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	
 }
