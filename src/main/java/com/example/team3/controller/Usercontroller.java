@@ -28,7 +28,6 @@ public class Usercontroller {
 	
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody User user){
-		System.out.println(user);
 		userService.insert(user);
 		
 		return new ResponseEntity<>("회원가입 완료", HttpStatus.OK);
