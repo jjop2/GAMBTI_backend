@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.example.team3.domain.User;
 import com.example.team3.domain.UserDTO;
 import com.example.team3.jwt.JwtService;
@@ -23,12 +24,18 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 	
 	private final UserService userService;
-	private final JwtService jwtService;
 	private final AuthenticationManager authenticationManager;
+	private final JwtService jwtService;
+	
+	@PostMapping("/signup")
+	public ResponseEntity<?> signup(@RequestBody User user){
+		userService.insert(user);
+		
+		return new ResponseEntity<>("회원가입 완료", HttpStatus.OK);
+	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody User user) {
-		
 		UsernamePasswordAuthenticationToken cred = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
 		
 		Authentication auth = authenticationManager.authenticate(cred);
