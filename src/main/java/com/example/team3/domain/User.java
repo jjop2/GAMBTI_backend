@@ -1,6 +1,8 @@
 package com.example.team3.domain;
 
-import java.security.Timestamp;
+
+
+import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
