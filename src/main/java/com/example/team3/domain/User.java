@@ -1,13 +1,13 @@
 package com.example.team3.domain;
 
-
-
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,13 +28,16 @@ public class User {
 	@Column(nullable= false , unique = true, length=20)
 	private String username;
 	
-	@Column(nullable= false , length=20)
+	@Column(nullable= false)
 	private String password;
 	
 	@Column(nullable= false , unique = true)
 	private String email;
 	
-	@CreationTimestamp
-	private Timestamp Date;
+	@Enumerated(EnumType.STRING)
+	private RoleType role;
 	
+	@CreationTimestamp
+	private Timestamp date;
+
 }
