@@ -25,6 +25,7 @@ public class SurveyResultController  {
 	public ResponseEntity<?> saveUserSurveyResult (@RequestBody SurveyResult surveyResult){
 		
 		
+		System.out.println(surveyResult);
 		surveyResultService.saveSurveyResult(surveyResult);
 	
 		// 게임 db에서 선호 장르 두가지 select해서 불러오는 작업 

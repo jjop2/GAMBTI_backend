@@ -2,7 +2,6 @@ package com.example.team3.domain;
 
 import jakarta.persistence.Entity;
 
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
