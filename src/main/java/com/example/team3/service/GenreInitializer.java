@@ -34,11 +34,11 @@ public class GenreInitializer implements CommandLineRunner {
 
 		if (genreService.getAllGenre().isEmpty()) {
 
-			genreService.saveGenre(new Genre(0, "Action", "🔫\"속도와 기술로 한계를 넘는 질주의 세계."));
-			genreService.saveGenre(new Genre(0, "Simulation", "🎮\"현실을 조작하며 세상을 직접 설계하는 장르."));
-			genreService.saveGenre(new Genre(0, "Racing", "🏎️\"속도와 기술로 한계를 넘는 질주의 세계."));
-			genreService.saveGenre(new Genre(0, "Sports", "🏅\"전략과 컨트롤로 승부를 겨루는 e-스포츠의 정수."));
-			genreService.saveGenre(new Genre(0, "RPG", "🐉\"캐릭터와 함께 성장하며 서사를 이끄는 모험 장르."));
+			genreService.saveGenre(new Genre(0, "🔫\"속도와 기술로 한계를 넘는 질주의 세계.", "Action"));
+			genreService.saveGenre(new Genre(0, "🎮\"현실을 조작하며 세상을 직접 설계하는 장르.", "Simulation" ));
+			genreService.saveGenre(new Genre(0, "🏎️\"속도와 기술로 한계를 넘는 질주의 세계.", "Racing"));
+			genreService.saveGenre(new Genre(0, "🏅\"전략과 컨트롤로 승부를 겨루는 e-스포츠의 정수.", "Sports"));
+			genreService.saveGenre(new Genre(0, "🐉\"캐릭터와 함께 성장하며 서사를 이끄는 모험 장르.", "RPG"));
 //	
 
 		}

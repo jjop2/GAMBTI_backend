@@ -1,27 +1,27 @@
 package com.example.team3.domain;
 
-import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Genre {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    private Integer id;
+	
+	@Column
+    private String description;
 	
 	private String name;
-	
-	private String description;
-	
+
 }
