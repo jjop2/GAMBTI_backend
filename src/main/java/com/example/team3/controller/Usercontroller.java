@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.example.team3.domain.User;
+import com.example.team3.domain.UserDTO;
 import com.example.team3.jwt.JwtService;
 import com.example.team3.service.UserService;
 
@@ -20,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class Usercontroller {
+public class UserController {
 	
 	private final UserService userService;
 	private final AuthenticationManager authenticationManager;
@@ -50,8 +51,9 @@ public class Usercontroller {
 	@GetMapping("/userinfo")
 	public ResponseEntity<?> userInfo(Authentication auth) {
 		User user = userService.getUser(auth.getName());
+		UserDTO dto = new UserDTO(user);
 		
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	
 }
