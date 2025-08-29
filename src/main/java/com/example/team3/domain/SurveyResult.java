@@ -35,9 +35,13 @@ public class SurveyResult {
 	@JoinColumn(name = "preferGenre_2")
 	private Genre preferGenre2;
 
+	private String combinationGenre;
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User username;
+	
+	
 
 }
 
