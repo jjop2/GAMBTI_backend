@@ -2,11 +2,11 @@ package com.example.team3.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.example.team3.config.AppConfig;
 import com.example.team3.domain.SurveyResult;
 import com.example.team3.service.SurveyResultService;
 
@@ -17,15 +17,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SurveyResultController  {
 
-	
 	private final SurveyResultService surveyResultService;
 
-	
+
 	@PostMapping("/surveyresult")
-	public ResponseEntity<?> saveUserSurveyResult (@RequestBody SurveyResult surveyResult){
+	public ResponseEntity<?> saveUserSurveyResult (@RequestBody SurveyResult surveyResult, Authentication auth){
 		
 		
 		System.out.println(surveyResult);
+		System.out.println(auth.getName());
+		// 요청 날린사람 username 
+		
 		surveyResultService.saveSurveyResult(surveyResult);
 	
 		// 게임 db에서 선호 장르 두가지 select해서 불러오는 작업 
