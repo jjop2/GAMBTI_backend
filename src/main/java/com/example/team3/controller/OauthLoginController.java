@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.team3.domain.OAuthType;
-import com.example.team3.domain.RoleType;
 import com.example.team3.domain.User;
 import com.example.team3.jwt.JwtService;
 import com.example.team3.security.UserDetailsImpl;
