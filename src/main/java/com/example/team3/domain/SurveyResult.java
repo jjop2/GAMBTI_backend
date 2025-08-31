@@ -39,7 +39,7 @@ public class SurveyResult {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User username;
+	private User user;
 	
 	
 
