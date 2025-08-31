@@ -25,8 +25,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(nullable= false , unique = true, length=20)
+	@Column(nullable= false , unique = true)
 	private String username;
+	
+	@Column
+	private String nickname;
 	
 	@Column(nullable= false)
 	private String password;
@@ -39,5 +42,8 @@ public class User {
 	
 	@CreationTimestamp
 	private Timestamp date;
+	
+	@Enumerated(EnumType.STRING)
+	private OAuthType oauth; // 일반/카카오/구글 로그인 구분
 
 }
