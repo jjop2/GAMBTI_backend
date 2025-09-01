@@ -40,9 +40,9 @@ public class SecurityConfig {
 						"/img/**", "/js/**", "/css/**", "/favicon/**",
 						"/",
 
-						"/login/**", "/signup/**",
-						"/survey","/api/**",
 
+						"/login/**", "/signup/**",
+						"/survey","/api/**", "/surveyresult",
 						"/privacy", "/term", "/faq"
 						)
 						.permitAll()

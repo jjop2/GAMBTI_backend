@@ -42,3 +42,8 @@ public class SurveyResult {
 	private User username;
 	
 }
+
+//@Enumerated(EnumType.STRING)
+//private GenreType type;
+
+

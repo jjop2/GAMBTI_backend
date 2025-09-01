@@ -11,3 +11,4 @@ import com.example.team3.domain.Genre;
 public interface GenreRepository extends JpaRepository<Genre, Integer>{
 	Optional<Genre> findByDescription(String description);
 }
+
