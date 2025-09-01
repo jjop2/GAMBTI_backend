@@ -41,9 +41,6 @@ public class SurveyResult {
 	@JoinColumn(name = "user_id")
 	private User username;
 	
-
-	
-
 }
 
 //@Enumerated(EnumType.STRING)
