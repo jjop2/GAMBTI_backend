@@ -28,7 +28,8 @@ public class User {
 	@Column(nullable= false , unique = true)
 	private String username;
 	
-	@Column
+
+	@Column(nullable=false, length=20 )
 	private String nickname;
 	
 	@Column(nullable= false)
