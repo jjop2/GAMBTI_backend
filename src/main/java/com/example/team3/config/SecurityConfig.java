@@ -39,8 +39,10 @@ public class SecurityConfig {
 				authorize.requestMatchers(
 						"/img/**", "/js/**", "/css/**", "/favicon/**",
 						"/",
-						"/login", "/signup",
-						"/survey", "/surveyresult",
+
+
+						"/login/**", "/signup/**",
+						"/survey","/api/**", "/surveyresult",
 						"/privacy", "/term", "/faq"
 						)
 						.permitAll()
