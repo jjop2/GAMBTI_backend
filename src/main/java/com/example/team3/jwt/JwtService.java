@@ -29,10 +29,13 @@ public class JwtService {
 	
 	static final String ROLES_CLAIM = "roles";
 	
+	// 토큰에 id 담기 위한 커스텀 클레임 키 (토큰에는 id라는 이름의 키로 표시됨)
+	static final String ID_CLAIM = "id";
+	
 	/*
 	 * 토큰 생성하는 메서드
 	 */
-	public String createToken(String username, Collection<? extends GrantedAuthority> authorities) {
+	public String createToken(String username, Collection<? extends GrantedAuthority> authorities, Integer id) {
 		
 		Date now = new Date();
 		
@@ -50,6 +53,8 @@ public class JwtService {
 				.expiration(exp)
 				.signWith(KEY)
 				.claim(ROLES_CLAIM, roles)
+				// User 객체에서 id 뽑아서 ID_CLAIM 클레임에 담아 보냄
+				.claim(ID_CLAIM, id)
 				.compact();
 		
 	}

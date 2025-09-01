@@ -15,6 +15,7 @@ public class UserDTO {
 	private String nickname;
 	private String email;
 	private RoleType role;
+	private OAuthType oauth;
 	
 	public UserDTO(User user) {
 		this.id = user.getId();
@@ -22,6 +23,7 @@ public class UserDTO {
 		this.nickname = user.getNickname();
 		this.email = user.getEmail();
 		this.role = user.getRole();
+		this.oauth = user.getOauth();
 	}
 	
 }

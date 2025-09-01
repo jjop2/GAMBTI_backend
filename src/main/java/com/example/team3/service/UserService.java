@@ -6,9 +6,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.team3.domain.User;
-import com.example.team3.domain.UserDTO;
+
+
 import com.example.team3.domain.exception.UserException;
-import com.example.team3.config.WebConfig;
+
+
+import com.example.team3.domain.OAuthType;
+
 import com.example.team3.domain.RoleType;
 
 import com.example.team3.repository.UserRepository;
@@ -46,6 +50,7 @@ public class UserService {
 		user.setPassword(passwordEncoder.encode(user.getPassword())); 
 		
 		user.setRole(RoleType.USER);
+		user.setOauth(OAuthType.BOARD);
 		
 		
 		userRepository.save(user);

@@ -28,6 +28,7 @@ public class User {
 	@Column(nullable= false , unique = true)
 	private String username;
 	
+
 	@Column(nullable=false, length=20 , unique=true)
 	private String nickname;
 	
@@ -42,5 +43,8 @@ public class User {
 	
 	@CreationTimestamp
 	private Timestamp date;
+	
+	@Enumerated(EnumType.STRING)
+	private OAuthType oauth; // 일반/카카오/구글 로그인 구분
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.team3.domain.User;
 import com.example.team3.domain.UserDTO;
 import com.example.team3.jwt.JwtService;
+import com.example.team3.security.UserDetailsImpl;
 import com.example.team3.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,8 +42,18 @@ public class UserController {
 		UsernamePasswordAuthenticationToken cred = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
 		
 		Authentication auth = authenticationManager.authenticate(cred);
+			
+	/*
+		인증 객체에서 id를 뽑아내기 위한 과정
+		로그인 성공한 사용자 정보가 principal에 UserDetailsImpl로 들어감
+		단, object 타입이므로 UserDetailsImpl로 형변환 필요
+		UserDetailsImpl -> User -> id\
+	*/
+		UserDetailsImpl userDetailsImpl = (UserDetailsImpl)auth.getPrincipal();
+		Integer id = userDetailsImpl.getUser().getId();
 		
-		String jwt = jwtService.createToken(auth.getName(), auth.getAuthorities());
+		// JWT 생성 (username, 권한, id 포함)
+		String jwt = jwtService.createToken(auth.getName(), auth.getAuthorities(), id);
 		
 		return ResponseEntity.ok()
 				.header(HttpHeaders.AUTHORIZATION, "Bearer " + jwt)
