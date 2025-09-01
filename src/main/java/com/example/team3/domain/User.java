@@ -29,7 +29,7 @@ public class User {
 	private String username;
 	
 
-	@Column(nullable=false, length=20 , unique=true)
+	@Column(nullable=false, length=20 )
 	private String nickname;
 	
 	@Column(nullable= false)
