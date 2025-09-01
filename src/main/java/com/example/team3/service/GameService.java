@@ -167,4 +167,8 @@ public class GameService {
             
         } 
     }
+    // GameRepository에서 만든 게임 찾아주는 메서드 호출해서 사용
+    public List<Game> getRecommendGames(Integer userId){
+    	return gameRepository.findSurveyResultGame(userId);
+    }
 }
