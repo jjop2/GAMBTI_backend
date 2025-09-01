@@ -12,12 +12,14 @@ public class UserDTO {
 	
 	private Integer id;
 	private String username;
+	private String nickname;
 	private String email;
 	private RoleType role;
 	
 	public UserDTO(User user) {
 		this.id = user.getId();
 		this.username = user.getUsername();
+		this.nickname = user.getNickname();
 		this.email = user.getEmail();
 		this.role = user.getRole();
 	}

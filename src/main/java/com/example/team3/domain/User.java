@@ -25,8 +25,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(nullable= false , unique = true, length=20)
+	@Column(nullable= false , unique = true)
 	private String username;
+	
+	@Column(nullable=false, length=20 , unique=true)
+	private String nickname;
 	
 	@Column(nullable= false)
 	private String password;
