@@ -10,6 +10,6 @@ import com.example.team3.domain.Board;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Integer>{
 	
-	List<Board> findAllbyOrderByIdDesc();
+	List<Board> findAllByOrderByIdDesc();
 	
 }

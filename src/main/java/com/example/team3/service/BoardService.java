@@ -20,7 +20,7 @@ public class BoardService {
 	}
 	
 	public List<Board> getBoardList(){
-		return boardRepository.findAllbyOrderByIdDesc();
+		return boardRepository.findAllByOrderByIdDesc();
 	}
 	
 	public Board getBoard(Integer id) {
