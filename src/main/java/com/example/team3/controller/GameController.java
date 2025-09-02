@@ -10,7 +10,7 @@ import com.example.team3.service.GameService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping()
+@RequestMapping
 @RequiredArgsConstructor
 public class GameController {
 	

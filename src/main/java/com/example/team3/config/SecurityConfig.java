@@ -42,7 +42,8 @@ public class SecurityConfig {
 
 
 						"/login/**", "/signup/**",
-						"/survey","/api/**", "/surveyresult",
+						"/fetch/**","/survey","/api/**", "/surveyresult","/recommendgame/**",
+						"/board","/upload/**",
 						"/privacy", "/term", "/faq"
 						)
 						.permitAll()

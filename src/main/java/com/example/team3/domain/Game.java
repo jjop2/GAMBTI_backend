@@ -42,6 +42,7 @@ public class Game {
 	private String path_full;
 	
 	
+	
 //	@OneToMany(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "genre_id", nullable = true)
 //	private List<GameGenre> genre;
