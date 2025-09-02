@@ -32,4 +32,6 @@ public class BoardController {
 		
 	}
 	
+	// 보드 전체리스트 받기 안해놓음 (getBoardList)
+	
 }
