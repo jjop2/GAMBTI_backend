@@ -10,7 +10,7 @@ import com.example.team3.service.GameService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/games")
+@RequestMapping
 @RequiredArgsConstructor
 public class GameController {
 	
@@ -22,7 +22,7 @@ public class GameController {
         return "게임 정보를 성공적으로 저장했습니다!";
     }
     
-    @GetMapping("/{userId}/recommendgame")
+    @GetMapping("/recommendgame/{userId}")
     public List<Game> getRecommendGames(@PathVariable Integer userId){
     	return gameService.getRecommendGames(userId);
     }
