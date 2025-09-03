@@ -2,6 +2,9 @@ package com.example.team3.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.core.io.FileSystemResource;
@@ -12,12 +15,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.team3.domain.Board;
+import com.example.team3.domain.User;
+import com.example.team3.repository.BoardRepository;
+import com.example.team3.repository.UserRepository;
 import com.example.team3.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +36,26 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	
 	private final BoardService boardService;
+	private final BoardRepository boardRepository;
+	private final UserRepository userRepository;
+	
+	// 게시글 등록
+	@PostMapping("/upload")
+	public ResponseEntity<?> upload(Board board, MultipartFile file){
+		try {
+//			User user = (User) userRepository.findById(board.getUser().getId());
+			
+			Path path = Paths.get("upload/" + file.getOriginalFilename());
+			Files.createDirectories(path.getParent());
+			Files.write(path, file.getBytes());
+			board.setImg(file.getOriginalFilename());
+			boardRepository.save(board);
+			return new ResponseEntity<>("업로드 성공", HttpStatus.OK);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("업로드 실패",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	// 단일 게시글 조회
 	@GetMapping("/upload/{id}")
@@ -51,11 +80,25 @@ public class BoardController {
 	
 	//게시글 수정 기능
 	@PutMapping("/upload/{id}")
-	@ResponseBody
-	public ResponseEntity<?> updateBoard(@RequestBody Board board) {
-		boardService.updateBoard(board);
-		
-		return new ResponseEntity<>("게시글이 수정되었습니다.", HttpStatus.OK);
+	public ResponseEntity<?> updateBoard(Board board, MultipartFile file, @RequestParam(required = false) String existingImg) {
+		try {
+			// 파일이 새로 업로드된 경우만 처리
+	        if (file != null && !file.isEmpty()) {
+	            Path path = Paths.get("upload/" + file.getOriginalFilename());
+	            Files.createDirectories(path.getParent());
+	            Files.write(path, file.getBytes());
+	            board.setImg(file.getOriginalFilename());
+	        } else if (existingImg != null) {
+	            // 새 파일 없으면 기존 이미지 유지
+	            board.setImg(existingImg);
+	        }
+			
+			boardService.updateBoard(board);
+			return new ResponseEntity<>("게시글이 수정되었습니다.", HttpStatus.OK);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("게시글 수정 실패",HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	// 게시판 이미지 출력 기능
