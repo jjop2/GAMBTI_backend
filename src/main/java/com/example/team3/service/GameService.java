@@ -171,4 +171,9 @@ public class GameService {
     public List<Game> getRecommendGames(Integer userId){
     	return gameRepository.findSurveyResultGame(userId);
     }
+    
+    public List<Game> getFirstGenreGameList(Integer genreId){
+    	return gameRepository.findFirstGenreGameList(genreId);
+    }
+    
 }
