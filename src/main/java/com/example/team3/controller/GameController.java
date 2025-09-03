@@ -27,7 +27,7 @@ public class GameController {
     	return gameService.getRecommendGames(userId);
     }
     
-    @GetMapping("/recommendgame/{genreId}")
+    @GetMapping("/recommendgame/genre/{genreId}")
     public List<Game> getFirstGenreGameList(@PathVariable Integer genreId){
     	return gameService.getFirstGenreGameList(genreId);
     }
