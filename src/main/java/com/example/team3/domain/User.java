@@ -34,13 +34,13 @@ public class User {
 	private String username;
 	
 
-	@Column(nullable=false, length=20 )
+	@Column(nullable=false)
 	private String nickname;
 	
 	@Column(nullable= false)
 	private String password;
 	
-	@Column(nullable= false , unique = true)
+	@Column(nullable= false)
 	private String email;
 	
 	@Enumerated(EnumType.STRING)
