@@ -12,4 +12,6 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 	
 	List<Board> findAllByOrderByIdDesc();
 	
+	List<Board> findByUserIdOrderByIdDesc(Integer userId);
+	
 }

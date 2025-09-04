@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -17,16 +18,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.team3.DTO.BoardRequestDTO;
+import com.example.team3.DTO.BoardResponseDTO;
 import com.example.team3.domain.Board;
-import com.example.team3.domain.User;
-import com.example.team3.repository.BoardRepository;
-import com.example.team3.repository.UserRepository;
 import com.example.team3.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,20 +34,16 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	
 	private final BoardService boardService;
-	private final BoardRepository boardRepository;
-	private final UserRepository userRepository;
 	
 	// 게시글 등록
 	@PostMapping("/upload")
-	public ResponseEntity<?> upload(Board board, MultipartFile file){
+	public ResponseEntity<?> upload(BoardRequestDTO boardRequestDTO, MultipartFile file){
 		try {
-//			User user = (User) userRepository.findById(board.getUser().getId());
-			
 			Path path = Paths.get("upload/" + file.getOriginalFilename());
 			Files.createDirectories(path.getParent());
 			Files.write(path, file.getBytes());
-			board.setImg(file.getOriginalFilename());
-			boardRepository.save(board);
+			
+			boardService.insertBoard(boardRequestDTO, file);
 			return new ResponseEntity<>("업로드 성공", HttpStatus.OK);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -61,14 +55,19 @@ public class BoardController {
 	@GetMapping("/upload/{id}")
 	public ResponseEntity<?> getBoard(@PathVariable Integer id){
 		Board board = boardService.getBoard(id);
-		return new ResponseEntity<>(board, HttpStatus.OK);
+		BoardResponseDTO boardDto = new BoardResponseDTO(board);
+		return new ResponseEntity<>(boardDto, HttpStatus.OK);
 	}
 	
 	// 전체 게시글 조회
 	@GetMapping("/upload")
-	public ResponseEntity<List<Board>> getBoardList() {
+	public ResponseEntity<List<BoardResponseDTO>> getBoardList() {
 		List<Board> boardList = boardService.getBoardList();
-		return new ResponseEntity<>(boardList, HttpStatus.OK);
+		List<BoardResponseDTO> dtoList = boardList.stream()
+				.map(BoardResponseDTO::new)
+				.collect(Collectors.toList());
+		
+		return new ResponseEntity<>(dtoList, HttpStatus.OK);
 	}
 	
 	// 게시글 삭제 기능
@@ -116,7 +115,16 @@ public class BoardController {
 	            .body(resource);
 	}
 	
-	
+	// 로그인한 사용자가 쓴 게시글 불러오기
+	@GetMapping("/myboards/{id}")
+	public ResponseEntity<List<BoardResponseDTO>> getMyBoards(@PathVariable Integer id) {
+		List<Board> myList = boardService.getMyBoards(id);
+		List<BoardResponseDTO> dtoMyList = myList.stream()
+				.map(BoardResponseDTO::new)
+				.collect(Collectors.toList());
+		
+		return new ResponseEntity<>(dtoMyList, HttpStatus.OK);
+	}
 	
 
 }
