@@ -26,7 +26,7 @@ public class OauthLoginService {
 	 * DB에 없으면 : insertOauthUser 메서드를 실행하여 새롭게 DB에 저장 (회원가입 과정임)
 	 */
 	public User getOauthUser(User user, OAuthType oAuthType) {
-		User oauthUser = userRepository.findByEmail(user.getEmail()).orElse(null);
+		User oauthUser = userRepository.findByUsername(user.getUsername()).orElse(null);
 		
 		if(oauthUser == null) {
 			oauthUser = insertOauthUser(user, oAuthType);
