@@ -1,9 +1,6 @@
 # GAMBTI
 08/25 ~ 09/05 진행된 팀 프로젝트로, 3조가 개발한 React + Spring Boot 기반 풀스택 프로젝트입니다. GAMBTI는 테스트를 통해 자신의 게임 취향을 파악하고, 자신의 취향에 맞는 게임을 추천 받을 수 있는 웹사이트입니다. 테스트를 포함한 대부분의 기능은 JWT 인증을 활용한 회원제로 운영됩니다.
 
-## 실행 화면
-(대표로 몇장만)
-
 ## 주요 기능
 - 회원가입 & 로그인
 	- 일반 회원가입
@@ -58,6 +55,22 @@
 - 장수현 : 일반 로그인 및 소셜 로그인, 내가 쓴 글, 보안
 - 정수훈 : 회원가입 및 유효성 검사
 - 진현진 : 테스트 결과 도출과 저장
+
+## 실행 화면
+### 메인페이지
+<img width="1920" height="945" alt="Image" src="https://github.com/user-attachments/assets/897f0901-191a-414b-890e-42d6f9f28ea1" />
+
+### 테스트 페이지
+<img width="1920" height="945" alt="Image" src="https://github.com/user-attachments/assets/bb170613-c773-4f99-bb18-f8a69dc75236" />
+
+### 테스트 결과 페이지
+<img width="1920" height="945" alt="Image" src="https://github.com/user-attachments/assets/3f96c208-6697-45ec-adad-2083aaac5331" />
+
+### 맞춤형 게임 추천
+<img width="1920" height="945" alt="Image" src="https://github.com/user-attachments/assets/ef13736d-5a14-47c7-81b1-ed47f483d494" />
+
+### 커뮤니티
+<img width="1920" height="945" alt="Image" src="https://github.com/user-attachments/assets/bef92cb4-15bc-4e13-90a1-19189058d32a" />
 
 ## 리액트 깃허브 주소
 https://github.com/jjop2/team3-project-react.git
